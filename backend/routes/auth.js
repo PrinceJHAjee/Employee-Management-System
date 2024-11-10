@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');
+const User = require('../models/user');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../config');
@@ -10,7 +10,7 @@ router.post('/login', async (req, res) => {
   console.log('Login attempt:', { f_userName, f_Pwd }); // Debug log
   try {
     const user = await User.findOne({ f_userName });
-    if (!user) {
+    if (!user || !(await bcrypt.compare(f_Pwd, user.f_Pwd))) {
       console.log('User not found'); // Debug log
       return res.status(401).json({ error: 'Invalid credentials' });
     }

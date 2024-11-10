@@ -156,7 +156,7 @@ const CreateEmployee = () => {
                 checked={formData.f_Course.includes('Course1')}
                 onChange={handleChange}
               />
-              Course 1
+              MCA
             </label>
             <label>
               <input
@@ -166,7 +166,7 @@ const CreateEmployee = () => {
                 checked={formData.f_Course.includes('Course2')}
                 onChange={handleChange}
               />
-              Course 2
+              BCA
             </label>
             <label>
               <input
@@ -176,7 +176,7 @@ const CreateEmployee = () => {
                 checked={formData.f_Course.includes('Course3')}
                 onChange={handleChange}
               />
-              Course 3
+              BE/B.Tech
             </label>
           </div>
         </div>

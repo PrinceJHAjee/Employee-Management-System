@@ -37,9 +37,11 @@ const SignupPage = () => {
       setErrors(formErrors);
       return;
     }
+     // Debug the API base URL here
+  console.log("API Base URL:", process.env.REACT_APP_API_BASE_URL);
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/users/register`, {
+      const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/api/users/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -49,6 +51,12 @@ const SignupPage = () => {
           f_Pwd: formData.password,
         }),
       });
+
+       // Handle non-JSON response
+    const responseData = response.headers.get('content-type')?.includes('application/json')
+    ? await response.json()
+    : { message: 'Non-JSON response from server' };
+
 
       if (!response.ok) {
         const error = await response.json();

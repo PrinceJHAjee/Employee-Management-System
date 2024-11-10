@@ -27,7 +27,7 @@ const Header = ({ user, onLogout }) => {
 
   return (
     <header className="header">
-      <div className="logo">Logo</div>
+      <div className="logo">EMS</div>
       <nav>
         {user ? (
           <>

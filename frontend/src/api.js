@@ -1,4 +1,5 @@
-const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000/api';
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
+
 
 const handleResponse = async (response) => {
   try {
@@ -47,7 +48,7 @@ const getUploadHeaders = () => {
 
 export const login = async (credentials) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+    const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -63,7 +64,7 @@ export const login = async (credentials) => {
 
 export const register = async (user) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/auth/register`, {
+    const response = await fetch(`${API_BASE_URL}/api/auth/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -79,7 +80,7 @@ export const register = async (user) => {
 
 export const fetchEmployees = async () => {
   try {
-    const response = await fetch(`${API_BASE_URL}/employees`, {
+    const response = await fetch(`${API_BASE_URL}/api/employees`, {
       method: 'GET',
       headers: getAuthHeaders(),
     });
@@ -92,7 +93,7 @@ export const fetchEmployees = async () => {
 
 export const getEmployee = async (id) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/employees/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/employees/${id}`, {
       method: 'GET',
       headers: getAuthHeaders(),
     });
@@ -105,7 +106,7 @@ export const getEmployee = async (id) => {
 
 export const updateEmployee = async (id, employee) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/employees/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/employees/${id}`, {
       method: 'PUT',
       headers: getAuthHeaders(),
       body: JSON.stringify(employee),
@@ -132,13 +133,13 @@ export const createEmployee = async (employee) => {
       formData.append('f_Course', JSON.stringify(employee.f_Course)); // Converting array to JSON string
       formData.append('f_Image', employee.f_Image); // Appending the file
       
-      response = await fetch(`${API_BASE_URL}/employees`, {
+      response = await fetch(`${API_BASE_URL}/api/employees`, {
         method: 'POST',
         headers: getUploadHeaders(),
         body: formData,
       });
     } else {
-      response = await fetch(`${API_BASE_URL}/employees`, {
+      response = await fetch(`${API_BASE_URL}/api/employees`, {
         method: 'POST',
         headers: getAuthHeaders(),
         body: JSON.stringify(employee),
@@ -155,7 +156,7 @@ export const createEmployee = async (employee) => {
 
 export const deleteEmployee = async (id) => {
   try {
-    const response = await fetch(`${API_BASE_URL}/employees/${id}`, {
+    const response = await fetch(`${API_BASE_URL}/api/employees/${id}`, {
       method: 'DELETE',
       headers: getAuthHeaders(), // Include authentication headers if required
     });

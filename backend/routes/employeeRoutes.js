@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Employee = require('../models/Employee');
+const Employee = require('../models/employee');
 
 // Get all employees
 router.get('/', async (req, res) => {
@@ -28,10 +28,12 @@ router.get('/:id', async (req, res) => {
 // Create a new employee
 router.post('/', async (req, res) => {
   try {
+    console.log('Request body:', req.body); // Log request data
     const newEmployee = new Employee(req.body);
     await newEmployee.save();
     res.status(201).json(newEmployee);
   } catch (err) {
+    console.error('Error creating employee:', err); // Log errors for troubleshooting
     res.status(400).json({ error: err.message });
   }
 });
